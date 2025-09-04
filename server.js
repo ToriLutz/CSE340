@@ -17,6 +17,11 @@ const expressLayouts = require("express-ejs-layouts")
  * view Engine and Templates
  *************************/
 app.use(static)
+
+//index route 
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
@@ -27,6 +32,7 @@ app.set("layout", "./layouts/layout")
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+
 
 /* ***********************
  * Log statement to confirm server operation
