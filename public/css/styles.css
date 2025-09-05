@@ -1,6 +1,24 @@
 /******* Change Box Model ***************/
+:root{
+  --primary-color: #fff;
+  --secondary-color:#01b0d3;
+  --accent-color: #242332;
+}
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+
+
+
+
+.background-image{
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 100vh; 
+  margin: 0; 
 }

@@ -17,6 +17,8 @@ const expressLayouts = require("express-ejs-layouts")
  * view Engine and Templates
  *************************/
 app.use(static)
+app.use(express.static('./public'))
+
 
 //index route 
 app.get("/", function(req, res){
@@ -25,6 +27,7 @@ app.get("/", function(req, res){
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
+
 
 /* ***********************
  * Local Server Information
