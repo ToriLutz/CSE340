@@ -10,6 +10,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
+const path = require('path')
 
 
 
@@ -17,7 +18,10 @@ const expressLayouts = require("express-ejs-layouts")
  * view Engine and Templates
  *************************/
 app.use(static)
-app.use(express.static('./public'))
+app.use(express.static('public'))
+
+
+
 
 
 //index route 
