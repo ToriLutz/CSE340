@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+.blue{
+  color: var(--secondary-color);
+}
+
 
 #upgrades{
   background-color:  var(--primary-color);
@@ -138,4 +142,47 @@ nav li:hover{
   position: absolute;
   top: 45%;
   text-size-adjust: smaller;
+}
+
+@media  screen and (max-width: 600px) {
+
+.nav-menu{
+    gap: 70px;
+}
+.navigation{
+    min-height: 40px;
+}
+
+.main{
+  width: 100%;
+  margin-left: 0%;
+}
+
+.hero img{
+  width: 100px;
+  height: auto;
+}
+
+.hero{
+  padding: 0%;
+}
+
+.own{
+  background-color: rgba(255, 255, 255, .75);
+  margin-left: 5%;
+  top: 35%;
+}
+
+
+
+#reviews{
+  width: 100%;
+}
+
+.big{
+  display: flex;
+  flex-direction: column;
+}
+
+  
 }
