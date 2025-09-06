@@ -33,7 +33,6 @@
   padding: 25px 50px 25px 50px;
   margin: 10px;
 
-
 }
 
 #reviews{
@@ -123,4 +122,8 @@ nav li:hover{
     justify-content: space-between;
     align-items: center;
     gap: 60px;
+}
+#top-header{
+  display: flex;
+  justify-content: space-between;
 }
