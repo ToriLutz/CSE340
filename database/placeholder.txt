@@ -71,5 +71,21 @@ SET inv_description = 'Do you have 6 kids and like to go offroading? The Hummer 
 WHERE inv_make = 'GM';
 
 
+SELECT classification_name,
+classification.classification_id,
+inv_make,
+inv_model
+FROM classification 
+INNER JOIN inventory ON 
+inventory.classification_id = classification.classification_id
+WHERE classification_name = 'Sport';
+
+
+UPDATE inventory
+SET inv_image = 
+	LEFT(inv_image, 8) || 'vehicles/' || SUBSTRING(inv_image FROM 9),
+	inv_thumbnail = 
+	LEFT(inv_thumbnail, 8) || 'vehicles/' || SUBSTRING(inv_thumbnail FROM 9);
+
 
 
