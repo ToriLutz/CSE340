@@ -13,6 +13,8 @@ const expressLayouts = require("express-ejs-layouts")
 const path = require('path')
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
+const inventoryRoute = require('./routes/inventoryRoute');
+
 
 
 
@@ -24,6 +26,13 @@ app.use(express.static('public'))
 
 
 
+// Use the routes
+// Import the route
+
+
+// Use the route
+app.use('/inv', inventoryRoute);
+
 
 
 //index route 
@@ -31,6 +40,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
+app.use('/inv', inventoryRoutes);
+
 
 
 /* ***********************
