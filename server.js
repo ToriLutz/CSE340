@@ -11,6 +11,7 @@ const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const path = require('path')
+const baseController = require("./controllers/baseController")
 
 
 
@@ -25,9 +26,7 @@ app.use(express.static('public'))
 
 
 //index route 
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
