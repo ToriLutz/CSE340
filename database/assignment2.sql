@@ -278,3 +278,39 @@ SET inv_image =
 
 
 
+INSERT INTO account (aaccount_firstname, 
+	account_lastname,
+	account_email, 
+	account_password, 
+	account_type)
+	VALUES (Tony, Stark, tony@starkent.com, Iam1ronM@n,);
+
+
+UPDATE account
+SET account_type = 'Admin'
+WHERE account_email = 'tony@starkent.com';
+
+DELETE FROM account
+WHERE account_email = 'tony@starkent.com';
+
+
+
+SELECT * FROM inventory WHERE inv_make = 'GM'; 
+
+ALTER TABLE inv_description WHERE inv_make = 'GM'
+('Do you have 6 kids and like to go offroading? The Hummer gives you the hu interiors with an engine to get you out of any muddy or rocky situation.');
+
+SELECT classification_name,
+classification.classification_id,
+inv_make,
+inv_model
+FROM classification 
+INNER JOIN inventory ON 
+inventory.classification_id = classification.classification_id
+WHERE classification_name = 'Sport';
+
+UPDATE inventory
+SET inv_image = 
+	LEFT(inv_image, 8) || 'vehicles/' || SUBSTRING(inv_image FROM 9),
+	inv_thumbnail = 
+	LEFT(inv_thumbnail, 8) || 'vehicles/' || SUBSTRING(inv_thumbnail FROM 9);
