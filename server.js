@@ -12,6 +12,7 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const path = require('path')
 const baseController = require("./controllers/baseController")
+const utilities = require("./utilities/")
 
 
 
@@ -26,7 +27,7 @@ app.use(express.static('public'))
 
 
 //index route 
-app.get("/", baseController.buildHome)
+app.get("/", utilities.handleErrors(baseController.buildHome))
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
@@ -49,6 +50,7 @@ app.listen(port, () => {
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
 
 /* ***********************
 * Express Error Handler
