@@ -1,5 +1,5 @@
 const invModel = require("../models/inventory-model")
-const utilities = require("../utilities/")
+const utilities = require("../utilities/index")
 
 const invCont = {}
 
@@ -17,6 +17,24 @@ invCont.buildByClassificationId = async function (req, res, next) {
     nav,
     grid,
   })
+}
+
+invCont.detailVehicle = async function(req, res, next) {
+  const inv_id = req.params.inv_id;
+
+  try {
+    const vehicle = await invModel.getVehicleById(inv_id);
+    if (!vehicle) {
+      // Handle vehicle not found
+      res.status(404).send("Vehicle not found");
+      return;
+    }
+
+    const vehicleHTML = utilities.buildVehicleDetail(vehicle);
+    res.send(vehicleHTML);
+  } catch (err) {
+    next(err);
+  }
 }
 
 

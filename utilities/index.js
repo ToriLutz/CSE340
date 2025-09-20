@@ -68,3 +68,55 @@ Util.buildClassificationGrid = async function(data){
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+Util.buildVehicleDetail = function(vehicle) {
+  // Format price and mileage with commas
+  Util.buildVehicleDetail = function(vehicle) {
+  const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price);
+  const formattedMileage = new Intl.NumberFormat('en-US').format(vehicle.inv_miles);
+
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>${vehicle.inv_make} ${vehicle.inv_model} - Details</title>
+      <link rel="stylesheet" href="/css/style.css" />
+      <style>
+        /* Basic styles for responsiveness and layout */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .vehicle-container { display: flex; flex-wrap: wrap; gap: 20px; }
+        .vehicle-image { flex: 1 1 50%; }
+        .vehicle-details { flex: 1 1 50%; }
+        img { max-width: 100%; height: auto; display: block; }
+        h1 { margin-top: 0; }
+        @media(max-width: 768px) {
+          .vehicle-container { flex-direction: column; }
+        }
+      </style>
+    </head>
+    <body>
+      <main class="vehicle-detail">
+        <h1>${vehicle.inv_make} ${vehicle.inv_model} (${vehicle.inv_year})</h1>
+        <div class="vehicle-container">
+          <div class="vehicle-image">
+            <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}" />
+          </div>
+          <div class="vehicle-details">
+            <h2 style="margin-top:0;">Details & Pricing</h2>
+            <p><strong>Make:</strong> ${vehicle.inv_make}</p>
+            <p><strong>Model:</strong> ${vehicle.inv_model}</p>
+            <p><strong>Classification ID:</strong> ${vehicle.classification_id}</p>
+            <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+            <p><strong>Year:</strong> ${vehicle.inv_year}</p>
+            <p><strong>Price:</strong> ${formattedPrice}</p>
+            <p><strong>Mileage:</strong> ${formattedMileage} miles</p>
+            <p><strong>Description:</strong> ${vehicle.inv_description || 'N/A'}</p>
+          </div>
+        </div>
+      </main> 
+    </body>
+    </html>
+  `;
+}
+}
