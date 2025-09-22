@@ -144,6 +144,32 @@ nav li:hover{
   text-size-adjust: smaller;
 }
 
+.vehicle-container {
+   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+}
+
+.vehicle-image {
+  flex: 1 1 50%; 
+  width: 100%;
+  height: auto;
+}
+
+.vehicle-details { 
+  border: var(--accent-color) 1px solid;
+  flex: 1 1 50%; 
+  background-color: var(--primary-color);
+}
+
+
+
+h1 { 
+  margin-top: 0; 
+}
+
+
 /* error messages*/
 .emoji {
   font-size: 3em;
@@ -192,6 +218,7 @@ nav li:hover{
   margin-left: 5%;
   top: 35%;
 }
+
 
 
 

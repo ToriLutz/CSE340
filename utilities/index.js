@@ -81,19 +81,7 @@ Util.buildVehicleDetail = function(vehicle) {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>${vehicle.inv_make} ${vehicle.inv_model} - Details</title>
-      <link rel="stylesheet" href="/css/style.css" />
-      <style>
-        /* Basic styles for responsiveness and layout */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .vehicle-container { display: flex; flex-wrap: wrap; gap: 20px; }
-        .vehicle-image { flex: 1 1 50%; }
-        .vehicle-details { flex: 1 1 50%; }
-        img { max-width: 100%; height: auto; display: block; }
-        h1 { margin-top: 0; }
-        @media(max-width: 768px) {
-          .vehicle-container { flex-direction: column; }
-        }
-      </style>
+      <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
       <main class="vehicle-detail">
@@ -103,7 +91,7 @@ Util.buildVehicleDetail = function(vehicle) {
             <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}" />
           </div>
           <div class="vehicle-details">
-            <h2 style="margin-top:0;">Details & Pricing</h2>
+            <h2>Details & Pricing</h2>
             <p><strong>Make:</strong> ${vehicle.inv_make}</p>
             <p><strong>Model:</strong> ${vehicle.inv_model}</p>
             <p><strong>Classification ID:</strong> ${vehicle.classification_id}</p>
