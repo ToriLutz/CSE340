@@ -13,6 +13,7 @@ const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const inventoryRoute = require('./routes/inventoryRoute');
+const errorTestRoutes = require('./routes/errorTest');
 
 
 
@@ -39,6 +40,8 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")
 
+//error route 
+app.use('/', errorTestRoutes)
 
 
 
@@ -65,15 +68,15 @@ app.use("/inv", inventoryRoute)
 * Express Error Handler
 * Place after all other middleware
 *************************/
-// app.use(async (err, req, res, next) => {
-//   let nav = await utilities.getNav()
-//   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-//   res.render("errors/error", {
-//     title: err.status || 'Server Error',
-//     message: err.message,
-//     nav
-//   })
-// })
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

@@ -103,6 +103,7 @@ Util.buildVehicleDetail = function(vehicle) {
           </div>
         </div>
       </main> 
+
     </body>
     </html>
   `;
