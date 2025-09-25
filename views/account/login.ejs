@@ -1,0 +1,28 @@
+<html>
+    <%- include('../partials/head') %>
+    
+    <body>
+        <div id="Wrapper">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+
+            <main>
+
+          
+            <body>
+                <form id="form_id" method="post" name="myform">
+                <label>Email:</label>
+                <input type="email" name="email" id="email"/>
+                <label>Password:</label>
+                <input type="password" name="password" id="password"/>
+                <input type="button" value="LOGIN" id="submit" onclick="validate()"/>
+                </form>
+                
+            </body>
+                
+            </main>
+
+            <%- include('../partials/footer')%> 
+        </div>
+    </body>
+    </html>
