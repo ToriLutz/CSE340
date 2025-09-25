@@ -30,3 +30,11 @@ async function registerAccount(account_firstname, account_lastname, account_emai
 }
 
 module.exports = router;
+
+// Process the registration data
+router.post(
+  "/register",
+  regValidate.registationRules(),
+  regValidate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+)
