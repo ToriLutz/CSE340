@@ -169,7 +169,8 @@ h1 {
   margin-top: 0; 
 }
 
-#form_id {
+#register,
+#login {
   max-width: 400px;
   margin: 50px auto; /* Center horizontally with some top margin */
   padding: 20px;
@@ -180,7 +181,8 @@ h1 {
 }
 
 /* Style labels */
-#form_id label {
+#register label,
+#login label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
@@ -188,8 +190,12 @@ h1 {
 }
 
 /* Style input fields */
-#form_id input[type="text"],
-#form_id input[type="password"] {
+#register input[type="text"],
+#register input[type="password"],
+#register input[type="email"],
+#login input[type="text"],
+#login input[type="password"]
+#login input[type="email"]{
   width: 100%;
   padding: 10px 12px;
   margin-bottom: 15px;
@@ -201,14 +207,19 @@ h1 {
 }
 
 /* Add focus effect to inputs */
-#form_id input[type="text"]:focus,
-#form_id input[type="password"]:focus {
+#register input[type="text"]:focus,
+#register input[type="password"]:focus, 
+#register input[type="email"]:focus,
+#login input[type="text"]:focus,
+#login input[type="password"]:focus, 
+#login input[type="email"]:focus {
   border-color: var(--accent-color);
   outline: none;
 }
 
 /* Style the button */
-#form_id input[type="button"] {
+#register button,
+#login button {
   width: 100%;
   padding: 12px;
   background-color: var(--secondary-color);
@@ -220,7 +231,8 @@ h1 {
   transition: background-color 0.3s;
 }
 
-#form_id input[type="button"]:hover {
+#register button:hover
+#login button:hover {
   background-color: var(--primary-color);
 }
 
