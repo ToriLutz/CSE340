@@ -1,40 +1,20 @@
-// Needed Resources 
-const express = require("express");
-const router = new express.Router();
-const accountController = require("../controllers/accountController");
-const utilities = require('../utilities');
-router.get('/detail/:account_id', accountController.buildLogin);
-router.get('/login', accountController.buildLogin);
-router.get("/login", utilities.handleErrors(accountController.buildLogin));
-router.get("/register", accountController.buildRegister);
-router.get("/login", utilities.handleErrors(accountController.buildRegister));
+const express = require('express');
+const router = express.Router();
 
+const { buildLogin, buildRegister, processLogin } = require('../controllers/accountController');
+const { handleErrors } = require('../utilities'); 
 
+// Deliver login view
+router.get('/login', handleErrors(buildLogin));
 
-// Route to build account by classification view
-router.get("/type/:account_id", accountController.buildLogin);
-router.get("/type/:account_id", accountController.buildRegister);
+// Process login
+router.post('/login', handleErrors(processLogin));
 
+// Deliver registration view
+router.get('/registration', handleErrors(buildRegister));
 
-
-/* *****************************
-*   Register new account
-* *************************** */
-async function registerAccount(account_firstname, account_lastname, account_email, account_password){
-  try {
-    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
-    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
-  } catch (error) {
-    return error.message
-  }
-}
+// Add other routes as needed
+// For example:
+router.post('/register', handleErrors(require('../controllers/accountController').registerAccount));
 
 module.exports = router;
-
-// Process the registration data
-router.post(
-  "/register",
-  regValidate.registationRules(),
-  regValidate.checkRegData,
-  utilities.handleErrors(accountController.registerAccount)
-)

@@ -18,7 +18,9 @@ const errorTestRoutes = require('./routes/errorTest');
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
-
+console.log('utilities:', utilities)
+console.log('typeof utilities.handleErrors:', typeof utilities.handleErrors)
+const accountController = require('./controllers/accountController');
 
 
 
@@ -94,6 +96,7 @@ app.listen(port, () => {
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
 
 
 /* ***********************

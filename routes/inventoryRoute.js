@@ -9,5 +9,10 @@ router.get('/detail/:inv_id', invController.detailVehicle);
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
 
+// router.get('/test', (req, res) => {
+//   res.send('Inventory route is working!');
+// });
+
+
 module.exports = router;
 
