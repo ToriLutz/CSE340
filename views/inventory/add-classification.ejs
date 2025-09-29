@@ -18,6 +18,9 @@
   </ul>
 <% } %>
 
+     <%- include('../partials/head') %>
+
+
 <form id="classificationForm" action="/inv/add-classification" method="POST" novalidate>
   <label for="classification_name">Classification Name (no spaces or special chars):</label>
   <input type="text" id="classification_name" name="classification_name" required pattern="^[A-Za-z0-9]+$" placeholder="e.g., SUV" value="<%- locals.classification_name || '' %>">
