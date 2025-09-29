@@ -1,0 +1,54 @@
+<h1><%- title %></h1>
+<% if (messages && Object.keys(messages).length > 0) { %>
+  <div class="flash-messages">
+    <% Object.entries(messages).forEach(function([key, msgs]) { %>
+      <% msgs.forEach(function(msg) { %>
+        <div class="alert <%= key %>"><%= msg %></div>
+      <% }); %>
+    <% }); %>
+  </div>
+<% } %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+   <%- include('../partials/head') %>
+
+
+<form id="addInventoryForm" action="/inv/add-inventory" method="POST" novalidate>
+  <!-- Classification dropdown -->
+    <label>Classification
+        <%- classificationList %>
+    </label>
+
+  <!-- Vehicle Make -->
+  <label for="make">Make:</label>
+  <input type="text" id="make" name="make" required pattern="^[A-Za-z0-9 ]+$" placeholder="e.g., Honda" value="<%= typeof make !== 'undefined' ? make : '' %>">
+
+  <!-- Vehicle Model -->
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model" required pattern="^[A-Za-z0-9 ]+$" placeholder="e.g., Civic" value="<%= typeof model !== 'undefined' ? model : '' %>">
+
+  <!-- Vehicle Year -->
+  <label for="year">Year:</label>
+  <input type="number" id="year" name="year" required min="1900" max="2100" value="<%= typeof year !== 'undefined' ? year : '' %>">
+
+  <!-- Vehicle Price -->
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price" required min="0" step="0.01" placeholder="e.g., 15000" value="<%= typeof price !== 'undefined' ? price : '' %>">
+
+  <!-- Vehicle Image Path -->
+  <label for="img_path">Image Path:</label>
+  <input type="text" id="img_path" name="img_path" placeholder="Path to vehicle image" value="<%= typeof img_path !== 'undefined' ? img_path : '' %>">
+
+  <!-- Vehicle Thumbnail Path -->
+  <label for="thumbnail_path">Thumbnail Path:</label>
+  <input type="text" id="thumbnail_path" name="thumbnail_path" placeholder="Path to thumbnail image" value="<%= typeof thumbnail_path !== 'undefined' ? thumbnail_path : '' %>">
+
+  <button type="submit">Add Vehicle</button>
+</form>
+<script src="/js/inv-form.js"></script>

@@ -1,22 +1,30 @@
-// Needed Resources 
-const express = require("express")
-const router = new express.Router() 
-const invController = require("../controllers/invController")
+const express = require('express');
+const router = express.Router();
+
+const invController = require('../controllers/invController'); 
+
+// Inventory management page
+router.get('/', invController.showManagement);
+
+// View vehicles by classification
+router.get('/type/:classificationId', invController.buildByClassificationId);
+
+// Vehicle detail
 router.get('/detail/:inv_id', invController.detailVehicle);
 
+// Show form to add a classification
+router.get('/add-classification', invController.showAddClassificationForm);
 
-// Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
-router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
+// Show form to add an inventory vehicle
+router.get('/add-inventory', invController.showAddInventoryForm);
 
+// Handle submission of new inventory vehicle
+router.post('/add-inventory', invController.processAddInventory);
 
-
-// router.get('/test', (req, res) => {
-//   res.send('Inventory route is working!');
-// });
-
-
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+// Handle submission of new classification
+router.post('/add-classification', 
+  require('../utilities/inventory-validation'), // validation middleware
+  invController.processAddClassification
+);
 
 module.exports = router;
-

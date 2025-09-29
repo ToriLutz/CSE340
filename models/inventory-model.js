@@ -27,6 +27,20 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+// Check for existing classification
+async function getClassificationByName(name) {
+  const sql = 'SELECT * FROM classification WHERE classification_name = ?';
+  const [rows] = await db.execute(sql, [name]);
+  return rows.length > 0 ? rows[0] : null;
+}
+
+// Insert new classification
+async function insertClassification(name) {
+  const sql = 'INSERT INTO classification (classification_name) VALUES (?)';
+  const [result] = await db.execute(sql, [name]);
+  return result;
+}
+
 
 
 async function getVehicleById(id) {
@@ -37,12 +51,47 @@ async function getVehicleById(id) {
   return data.rows.length ? data.rows[0] : null;
 }
 
+async function addVehicle(vehicleData) {
+  const sql = `
+    INSERT INTO inventory (classification_id, make, model, year, price, img_path, thumbnail_path)
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  const params = [
+    vehicleData.classification_id,
+    vehicleData.make,
+    vehicleData.model,
+    vehicleData.year,
+    vehicleData.price,
+    vehicleData.img_path,
+    vehicleData.thumbnail_path
+  ];
+  await db.execute(sql, params);
 
-module.exports = {
-  getClassifications,
-  getInventoryByClassificationId,
-  getVehicleById
+}
+
+  const buildClassificationList = async (selectedId = null) => {
+  const classifications = await invModel.getClassifications();
+  let options = '<select name="classification_id" id="classification_id" required>';
+  options += "<option value=''>Choose a Classification</option>";
+  classifications.rows.forEach(row => {
+    options += `<option value="${row.classification_id}"`;
+    if (row.classification_id == selectedId) {
+      options += ' selected';
+    }
+    options += `>${row.classification_name}</option>`;
+  });
+  options += '</select>';
+  return options;
 };
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById};
+
+
+
+
+
+
+module.exports = {getClassifications, getInventoryByClassificationId, 
+  getVehicleById, insertClassification,
+   getClassificationByName, addVehicle,
+
+};
 

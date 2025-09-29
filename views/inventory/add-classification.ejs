@@ -1,0 +1,27 @@
+<h1>Add New Classification</h1>
+
+<% if (messages && Object.keys(messages).length > 0) { %>
+  <div class="flash-messages">
+    <% Object.entries(messages).forEach(function([key, msgs]) { %>
+      <% msgs.forEach(function(msg) { %>
+        <div class="alert <%= key %>"><%= msg %></div>
+      <% }); %>
+    <% }); %>
+  </div>
+<% } %>
+
+<% if (errors) { %>
+  <ul class="errors">
+    <% errors.array().forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<form id="classificationForm" action="/inv/add-classification" method="POST" novalidate>
+  <label for="classification_name">Classification Name (no spaces or special chars):</label>
+  <input type="text" id="classification_name" name="classification_name" required pattern="^[A-Za-z0-9]+$" placeholder="e.g., SUV" value="<%- locals.classification_name || '' %>">
+
+  <button type="submit">Add Classification</button>
+</form>
+<script src="../../public/js/classification.js"></script>

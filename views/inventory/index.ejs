@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+ <%- include('../partials/head') %>
+<body>
+  <h1>Inventory Management</h1>
+
+  <% if (messages && messages.length > 0) { %>
+    <div class="flash-messages">
+      <% messages.forEach(function(msg) { %>
+        <div class="alert"><%= msg %></div>
+      <% }); %>
+    </div>
+  <% } %>
+<ul>
+  <li><a href="/inv/add-classification">Add New Classification</a></li>
+  <li><a href="/inventory/add-inventory">Add New Inventory Item</a></li>
+</ul>
+</body>
+</html>
