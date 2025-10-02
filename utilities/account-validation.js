@@ -3,6 +3,8 @@ const accountModel = require("../models/account-model")
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
+
+
 /* **********************************
  *  Registration Data Validation Rules
  * ********************************* */
@@ -200,11 +202,11 @@ validate.checkUpdatePasswordData = async (req, res, next) => {
 };
 
 
-
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
+  console.log("req.body:", req.body); 
   const { account_email } = req.body;
   let errors = [];
   errors = validationResult(req);
@@ -220,5 +222,6 @@ validate.checkLoginData = async (req, res, next) => {
   }
   next();
 };
+
 
 module.exports = validate;

@@ -3,19 +3,19 @@ const router = express.Router();
 
 const accountController = require('../controllers/accountController');
 const { handleErrors } = require('../utilities');
+
+const utilities = require('../utilities'); 
 const { loginRules, checkLoginData } = require('../utilities/account-validation'); 
 
 // Deliver login view
 router.get('/login', handleErrors(accountController.buildLogin));
 
 // Process login (your existing login handler in controller)
-router.post(
-  '/login',
-  loginRules(),
-  checkLoginData,
-  handleErrors(accountController.accountLogin)
-);
-
+router.post('/login', 
+  loginRules(), 
+  checkLoginData, 
+  handleErrors(accountController.accountLogin));
+  
 // Deliver registration view
 router.get('/registration', handleErrors(accountController.buildRegister));
 
