@@ -1,3 +1,6 @@
+
+const accountData = await accountModel.getAccountByEmail(account_email);
+
 /* *****************************
 *   Register new account
 * *************************** */
@@ -36,3 +39,12 @@ async function getAccountByEmail (account_email) {
     return new Error("No matching email found")
   }
 }
+
+const payload = {
+  account_id: accountData.account_id,
+  account_firstname: accountData.account_firstname,
+  account_type: accountData.account_type,
+};
+
+
+const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });

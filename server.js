@@ -23,6 +23,7 @@ console.log('utilities:', utilities)
 console.log('typeof utilities.handleErrors:', typeof utilities.handleErrors)
 const accountController = require('./controllers/accountController');
 const flash = require('connect-flash');
+const setUser = require("./public/js/checkLogIn");
 
 
 
@@ -74,6 +75,7 @@ app.use('/account', require("./routes/accountRoute"));
 app.use('/inv', require('./routes/inventoryRoute'));
 app.use(cookieParser());
 app.use(utilities.checkJWTToken);
+app.use(setUser);
 
 
 //index route 
