@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
 const express = require("express")
 const env = require("dotenv").config()
 const app = express()
@@ -69,6 +70,8 @@ app.use(express.static('public'))
 app.use('/inv', inventoryRoute);
 app.use('/account', require("./routes/accountRoute"));
 app.use('/inv', require('./routes/inventoryRoute'));
+app.use(cookieParser());
+app.use(utilities.checkJWTToken);
 
 
 //index route 

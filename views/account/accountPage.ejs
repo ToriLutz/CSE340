@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+
+<body>
+  <div id="Wrapper">
+    <%- include('../partials/header') %>
+    <%- include('../partials/nav') %>
+
+    <main>
+      <% if (flashMessage) { %>
+        <div class="flash"><%= flashMessage %></div>
+      <% } %>
+      
+      <% if (errors && errors.length > 0) { %>
+        <div class="errors">
+          <% errors.forEach(function(error) { %>
+            <p><%= error %></p>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <h1>You're logged in</h1>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>
