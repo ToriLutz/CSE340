@@ -304,6 +304,32 @@ invCont.updateInventory = async function (req, res, next) {
 };
 
 
+/**
+ * Build the delete inventory view
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
+invCont.buildDeleteInventory = async function (req, res, next) {
+  const inventory_id = parseInt(req.params.inventoryId);
+  const nav = await utilities.getNav();
+
+  const inventoryData = (
+    await invModel.getInventoryByInventoryId(inventory_id))[0]; // Change this function to return the first item
+  const name = `${inventoryData.inv_make} ${inventoryData.inv_model}`;
+
+  res.render("inventory/delete-confirm", {
+    title: "Delete " + name,
+    errors: null,
+    nav,
+    inv_id: inventoryData.inv_id,
+    inv_make: inventoryData.inv_make,
+    inv_model: inventoryData.inv_model,
+    inv_year: inventoryData.inv_year,
+    inv_price: inventoryData.inv_price,
+  });
+};
+
 
 // Export the object
 module.exports = invCont;
