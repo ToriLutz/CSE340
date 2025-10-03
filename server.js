@@ -75,7 +75,7 @@ app.use('/account', require("./routes/accountRoute"));
 app.use('/inv', require('./routes/inventoryRoute'));
 app.use(cookieParser());
 app.use(utilities.checkJWTToken);
-app.use(setUser);
+
 
 
 //index route 
