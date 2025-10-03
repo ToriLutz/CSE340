@@ -22,7 +22,7 @@ router.post(
 router.get("/logout", utilities.handleErrors(accountController.accountLogout));
 
 // Registration handlers
-router.get("/registration", utilities.handleErrors(accountController.buildRegister));
+router.get("/register", utilities.handleErrors(accountController.buildRegister));
 router.post(
   "/register",
   regValidate.registrationRules(),

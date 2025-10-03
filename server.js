@@ -23,6 +23,7 @@ console.log('utilities:', utilities)
 console.log('typeof utilities.handleErrors:', typeof utilities.handleErrors)
 const accountController = require('./controllers/accountController');
 const flash = require('connect-flash');
+const accountRoutes = require('./routes/accountRoute');
 const setUser = require("./public/js/checkLogIn");
 
 
@@ -71,7 +72,7 @@ app.use(express.static('public'))
 
 // Use the route
 app.use('/inv', inventoryRoute);
-app.use('/account', require("./routes/accountRoute"));
+app.use('/account', accountRoutes);
 app.use('/inv', require('./routes/inventoryRoute'));
 app.use(cookieParser());
 app.use(utilities.checkJWTToken);
