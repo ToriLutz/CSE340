@@ -5,26 +5,28 @@
 /* ***********************
  * Require Statements
  *************************/
-const cookieParser = require("cookie-parser")
-const express = require("express")
-const env = require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
-const expressLayouts = require("express-ejs-layouts")
-const baseController = require("./controllers/baseController")
-const utilities = require("./utilities/")
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const env = require("dotenv").config();
+const app = express();
+const static = require("./routes/static");
+const expressLayouts = require("express-ejs-layouts");
+const baseController = require("./controllers/baseController");
+const utilities = require("./utilities/");
 const inventoryRoute = require('./routes/inventoryRoute');
 const accountRoute = require("./routes/accountRoute");
 const errorTestRoutes = require('./routes/errorTest');
-const session = require("express-session")
-const pool = require('./database/')
-const bodyParser = require("body-parser")
-console.log('utilities:', utilities)
-console.log('typeof utilities.handleErrors:', typeof utilities.handleErrors)
+const session = require("express-session");
+const pool = require('./database/');
+const bodyParser = require("body-parser");
+console.log('utilities:', utilities);
+console.log('typeof utilities.handleErrors:', typeof utilities.handleErrors);
 const accountController = require('./controllers/accountController');
 const flash = require('connect-flash');
 const accountRoutes = require('./routes/accountRoute');
 const setUser = require("./public/js/checkLogIn");
+const reviewRoutes = require('./routes/reviews');
+
 
 
 
@@ -76,6 +78,7 @@ app.use('/account', accountRoutes);
 app.use('/inv', require('./routes/inventoryRoute'));
 app.use(cookieParser());
 app.use(utilities.checkJWTToken);
+app.use('/reviews', reviewRoutes);
 
 
 

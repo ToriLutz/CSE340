@@ -1,0 +1,26 @@
+<h3>Reviews & Ratings</h3>
+<% reviews.forEach(function(review) { %>
+    <div class="review">
+        <strong><%= review.account_firstname %> <%= review.account_lastname %></strong>
+        <span>Rating: <%= review.rating %> stars</span>
+        <p><%= review.review_text %></p>
+        <small>Posted on: <%= review.review_date %></small>
+        <% if (currentUser && currentUser.account_id === review.account_id) { %>
+            <!-- Edit/Delete options -->
+            <form method="post" action="/reviews/delete/<%= review.review_id %>">
+                <button type="submit">Delete</button>
+            </form>
+            <!-- You can add an edit form/modal as needed -->
+        <% } %>
+    </div>
+<% }); %>
+
+<!-- Form for submitting or editing review -->
+<form method="post" action="/reviews/submit">
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+    <label for="rating">Rating (1-5):</label>
+    <input type="number" name="rating" min="1" max="5" required>
+    <label for="review_text">Review:</label>
+    <textarea name="review_text" required></textarea>
+    <button type="submit">Submit Review</button>
+</form>
